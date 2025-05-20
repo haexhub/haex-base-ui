@@ -7,8 +7,6 @@ const currentDir = dirname(fileURLToPath(import.meta.url))
 export default defineNuxtConfig({
   compatibilityDate: '2025-05-15',
 
-  devtools: { enabled: true },
-
   modules: [
     "nuxt-zod-i18n",
     "@nuxtjs/i18n",
