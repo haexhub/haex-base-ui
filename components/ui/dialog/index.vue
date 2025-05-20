@@ -1,38 +1,41 @@
 <template>
-  <slot name="trigger" :id> </slot>
+  <div>
+    <!-- <slot name="trigger" :id> </slot> -->
+    <component :is="triggerIs" :data-overlay="`#${id}`"> </component>
 
-  <div
-    :id
-    class="overlay modal overlay-open:opacity-100 hidden modal-middle [--tab-accessibility-limited:false] overflow-scroll p-0 sm:p-4"
-    role="dialog"
-    ref="modalRef"
-  >
     <div
-      class="overlay-animation-target overlay-open:mt-4 overlay-open:duration-500 mt-12 transition-all ease-out modal-dialog overlay-open:opacity-100"
+      :id
+      class="overlay modal overlay-open:opacity-100 hidden modal-middle [--tab-accessibility-limited:false] overflow-scroll p-0 sm:p-4"
+      role="dialog"
+      ref="modalRef"
     >
-      <div class="modal-content">
-        <div class="modal-header">
-          <slot name="title">
-            <h3 v-if="title" class="modal-title text-base sm:text-lg">
-              {{ title }}
-            </h3>
-          </slot>
+      <div
+        class="overlay-animation-target overlay-open:mt-4 overlay-open:duration-500 mt-12 transition-all ease-out modal-dialog overlay-open:opacity-100"
+      >
+        <div class="modal-content">
+          <div class="modal-header">
+            <slot name="title">
+              <h3 v-if="title" class="modal-title text-base sm:text-lg">
+                {{ title }}
+              </h3>
+            </slot>
 
-          <button
-            type="button"
-            class="btn btn-text btn-circle btn-sm absolute end-3 top-3"
-            :aria-label="t('close')"
-            @click="open = false"
-            tabindex="1"
-          >
-            <Icon name="mdi:close" size="18" />
-          </button>
-        </div>
-        <div class="modal-body text-sm sm:text-base py-1">
-          <slot />
-        </div>
-        <div class="modal-footer flex-wrap">
-          <slot name="buttons" />
+            <button
+              type="button"
+              class="btn btn-text btn-circle btn-sm absolute end-3 top-3"
+              :aria-label="t('close')"
+              @click="open = false"
+              tabindex="1"
+            >
+              <Icon name="mdi:close" size="18" />
+            </button>
+          </div>
+          <div class="modal-body text-sm sm:text-base py-1">
+            <slot />
+          </div>
+          <div class="modal-footer flex-wrap">
+            <slot name="buttons" />
+          </div>
         </div>
       </div>
     </div>
@@ -54,13 +57,17 @@ defineProps({
     type: String,
     default: "",
   },
+  triggerIs: {
+    type: String,
+    default: "button",
+  },
 });
 
 const open = defineModel<boolean>("open", { default: false });
 
 const { t } = useI18n();
-const modalRef = useTemplateRef("modalRef");
-const modal = ref<HSOverlay>();
+/* const modalRef = useTemplateRef("modalRef");
+const modal = ref<HSOverlay>(); */
 
 watch(open, async () => {
   //console.log("open modal", open.value);
