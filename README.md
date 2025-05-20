@@ -1,75 +1,14 @@
-# Nuxt Minimal Starter
+# Haex Hub Base Layer
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+## install dependencies
 
-## Setup
-
-Make sure to install dependencies:
-
-```bash
-# npm
-npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
+```
+pnpm add @nuxt/icon @nuxtjs/i18n @pinia/nuxt @tailwindcss/vite @vueuse/core @vueuse/nuxt flyonui nuxt nuxt-snackbar nuxt-zod-i18n tailwindcss vue vue-router zod
+pnpm add -D @iconify/json @iconify/tailwind4
 ```
 
-## Development Server
+## copy config files
 
-Start the development server on `http://localhost:3000`:
+you need the `assets/css/main.css` and `i18n/i18n.config.ts` folders and files
 
-```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+## Have fun
