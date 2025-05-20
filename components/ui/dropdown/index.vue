@@ -9,9 +9,7 @@
       :aria-label="label"
     >
       <slot name="activator">
-        <slot name="label">
-          {{ label }}
-        </slot>
+        {{ label }}
         <span
           class="icon-[tabler--chevron-down] dropdown-open:rotate-180 size-4"
         >

@@ -13,8 +13,8 @@
       </ul>
     </UiDialog>
 
-    <UiDropdown label="test" :items="[1, 2, 3]" class="btn">
-      <template #label> aaa </template>
+    <UiDropdown :items="[1, 2, 3]" class="btn">
+      <template #activator> <Icon name="mdi:menu" /> </template>
     </UiDropdown>
 
     <div class="dropdown relative inline-flex">
