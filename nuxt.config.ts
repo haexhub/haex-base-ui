@@ -19,7 +19,13 @@ export default defineNuxtConfig({
   ],
 
   imports: {
-    dirs: [join(currentDir, './composables/**'), join(currentDir, "./stores/**"), join(currentDir, "./components/**"), join(currentDir, "./pages/**"), join(currentDir, "./types/**")],
+    dirs: [
+      join(currentDir, './composables/**'),
+      join(currentDir, "./stores/**"),
+      join(currentDir, "./components/**"),
+      join(currentDir, "./pages/**"),
+      join(currentDir, "./types/**")
+    ],
   },
 
   i18n: {

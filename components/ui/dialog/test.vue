@@ -1,5 +1,8 @@
 <template>
-  <button
+  <component is="button" :data-overlay="`#${id}`" class="btn">
+    <slot name="trigger">open</slot>
+  </component>
+  <!-- <button>
     type="button"
     class="btn btn-primary"
     aria-haspopup="dialog"
@@ -8,10 +11,10 @@
     data-overlay="#basic-modal"
   >
     Open modal
-  </button>
+  </button> -->
 
   <div
-    id="basic-modal"
+    :id
     class="overlay modal overlay-open:opacity-100 hidden"
     role="dialog"
     tabindex="-1"
@@ -19,7 +22,11 @@
     <div class="modal-dialog overlay-open:opacity-100">
       <div class="modal-content">
         <div class="modal-header">
-          <h3 class="modal-title">Dialog Title</h3>
+          <slot name="title">
+            <h3 v-if="title" class="modal-title text-base sm:text-lg">
+              {{ title }}
+            </h3>
+          </slot>
           <button
             type="button"
             class="btn btn-text btn-circle btn-sm absolute end-3 top-3"
@@ -45,14 +52,23 @@
           >
             Close
           </button>
-          <button
-            type="button"
-            class="btn btn-primary"
-          >
-            Save changes
-          </button>
+          <button type="button" class="btn btn-primary">Save changes</button>
         </div>
       </div>
     </div>
   </div>
 </template>
+
+<script setup lang="ts">
+const id = useId();
+defineProps({
+  title: {
+    type: String,
+    default: "",
+  },
+  triggerIs: {
+    type: String,
+    default: "button",
+  },
+});
+</script>

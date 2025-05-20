@@ -19,37 +19,35 @@
       </slot>
     </button>
 
-    <slot name="items" :items>
-      <ul
-        class="dropdown-menu dropdown-open:opacity-100 hidden min-w-28"
-        role="menu"
-        aria-orientation="vertical"
-        :aria-labelledby="id"
+    <ul
+      class="dropdown-menu dropdown-open:opacity-100 hidden min-w-28"
+      role="menu"
+      aria-orientation="vertical"
+      :aria-labelledby="id"
+    >
+      <component
+        :is="itemIs"
+        class="dropdown-item"
+        v-for="item in items"
+        @click="$emit('select', item)"
       >
-        <component
-          :is="itemIs"
-          class="dropdown-item"
-          v-for="item in items"
-          @click="$emit('select', item)"
-        >
-          <slot name="item" :item>
-            {{ item }}
-          </slot>
-        </component>
-      </ul>
-    </slot>
+        <slot name="item" :item>
+          {{ item }}
+        </slot>
+      </component>
+    </ul>
   </div>
 </template>
 
 <script setup lang="ts" generic="T">
-const { itemIs = 'li' } = defineProps<{
-  label?: string
-  items?: T[]
-  itemIs?: string
-  activatorClass?: string
-  dropdownClass?: string
-}>()
+const { itemIs = "li" } = defineProps<{
+  label?: string;
+  items: T[];
+  itemIs?: string;
+  activatorClass?: string;
+  dropdownClass?: string;
+}>();
 
-defineEmits<{ select: [T] }>()
-const id = useId()
+defineEmits<{ select: [T] }>();
+const id = useId();
 </script>
