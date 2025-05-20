@@ -1,4 +1,8 @@
 import tailwindcss from "@tailwindcss/vite";
+import { dirname, join } from 'path';
+import { fileURLToPath } from 'url';
+
+const currentDir = dirname(fileURLToPath(import.meta.url))
 
 export default defineNuxtConfig({
   compatibilityDate: '2025-05-15',
@@ -15,13 +19,13 @@ export default defineNuxtConfig({
   ],
 
   imports: {
-    dirs: ["composables/**", "stores/**", "components/**", "pages/**", "types/**"],
+    dirs: [join(currentDir, './composables/**'), join(currentDir, "./stores/**"), join(currentDir, "./components/**"), join(currentDir, "./pages/**"), join(currentDir, "./types/**")],
   },
 
   i18n: {
     strategy: "prefix_and_default",
     defaultLocale: "de",
-    vueI18n: "~/i18n/i18n.config.ts",
+    vueI18n: join(currentDir, './i18n/i18n.config.ts'),
 
     locales: [
       { code: "de", language: "de-DE", isCatchallLocale: true },
@@ -47,7 +51,7 @@ export default defineNuxtConfig({
     },
   },
 
-  css: ["~/assets/css/main.css"],
+  css: [join(currentDir, "./assets/css/main.css")],
 
   vite: {
     plugins: [
