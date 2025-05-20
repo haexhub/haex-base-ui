@@ -1,9 +1,9 @@
 <template>
-  <div class="dropdown relative inline-flex" :class="dropdownClass">
+  <div class="dropdown relative inline-flex">
     <button
       :id
       class="dropdown-toggle"
-      :class="activatorClass"
+      v-bind="$attrs"
       aria-haspopup="menu"
       aria-expanded="false"
       :aria-label="label"
@@ -26,9 +26,9 @@
       :aria-labelledby="id"
     >
       <component
+        v-for="item in items"
         :is="itemIs"
         class="dropdown-item"
-        v-for="item in items"
         @click="$emit('select', item)"
       >
         <slot name="item" :item>
@@ -45,9 +45,13 @@ const { itemIs = "li" } = defineProps<{
   items: T[];
   itemIs?: string;
   activatorClass?: string;
-  dropdownClass?: string;
 }>();
 
+defineOptions({
+  inheritAttrs: false,
+});
+
 defineEmits<{ select: [T] }>();
+
 const id = useId();
 </script>
