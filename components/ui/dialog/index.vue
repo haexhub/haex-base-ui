@@ -63,16 +63,18 @@ const modalRef = useTemplateRef("modalRef");
 const modal = ref<HSOverlay>();
 
 watch(open, async () => {
-  console.log("open modal", open.value);
+  //console.log("open modal", open.value);
   if (open.value) {
-    await modal.value?.open();
+    HSOverlay.open(`#${id}`);
+    //await modal.value?.open();
   } else {
-    await modal.value?.close(true);
-    console.log("close dialog");
+    //await modal.value?.close(true);
+    HSOverlay.close(`#${id}`);
+    //console.log("close dialog");
   }
 });
 
-onMounted(() => {
+/* onMounted(() => {
   if (!modalRef.value) return;
   modal.value = new HSOverlay(modalRef.value, { isClosePrev: true });
 
@@ -80,7 +82,7 @@ onMounted(() => {
     console.log("close it from event", open.value);
     open.value = false;
   });
-});
+}); */
 </script>
 
 <i18n lang="json">
