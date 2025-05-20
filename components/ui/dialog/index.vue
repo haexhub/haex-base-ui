@@ -41,6 +41,8 @@
 </template>
 
 <script setup lang="ts">
+import { HSOverlay } from "flyonui/flyonui";
+
 defineOptions({
   inheritAttrs: false,
 });
@@ -64,7 +66,7 @@ const { t } = useI18n();
 /* const modalRef = useTemplateRef("modalRef");
 const modal = ref<HSOverlay>(); */
 
-/* watch(open, async () => {
+watch(open, async () => {
   //console.log("open modal", open.value);
   if (open.value) {
     HSOverlay.open(`#${id}`);
@@ -74,7 +76,7 @@ const modal = ref<HSOverlay>(); */
     HSOverlay.close(`#${id}`);
     //console.log("close dialog");
   }
-}); */
+});
 
 /* onMounted(() => {
   if (!modalRef.value) return;
