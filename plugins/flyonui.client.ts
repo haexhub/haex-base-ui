@@ -1,4 +1,3 @@
-import "flyonui/dist/overlay";
 import 'flyonui/flyonui';
 
 import type { HSOverlay, IStaticMethods } from 'flyonui/flyonui';
@@ -12,6 +11,18 @@ declare global {
 export default defineNuxtPlugin(() => {
   const router = useRouter();
   router.afterEach(async () => {
-    nextTick(() => window.HSStaticMethods.autoInit());
+    setTimeout(() => {
+      if (window.HSStaticMethods) {
+        window.HSStaticMethods.autoInit();
+      }
+    }, 50);
   });
+
+  if (import.meta.client) {
+    setTimeout(() => {
+      if (window.HSStaticMethods) {
+        window.HSStaticMethods.autoInit();
+      }
+    }, 50);
+  }
 });

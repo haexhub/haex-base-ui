@@ -7,7 +7,6 @@
     :aria-label="label"
     class="--prevent-on-load-init"
     @click="open = true"
-    :data-overlay="`#${id}`"
   >
     <slot name="trigger">open</slot>
   </button>
@@ -95,7 +94,7 @@ onMounted(async () => {
   modal.value = new window.HSOverlay(modalRef.value, {
     isClosePrev: true,
   });
-  modal.value.autoClose = 1;
+
   modal.value.on("close", () => {
     console.log("on close", open.value);
     open.value = false;
