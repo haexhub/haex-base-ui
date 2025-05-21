@@ -89,11 +89,13 @@ onMounted(async () => {
   if (!modalRef.value) return;
   // flyonui has a problem importing HSOverlay at component level due to ssr
   // that's the workaround I found
-  const flyonui = await import("flyonui/flyonui");
+  //const flyonui = await import("flyonui/flyonui");
 
-  modal.value = new flyonui.HSOverlay(modalRef.value, {
+  window.HSStaticMethods.autoInit();
+  modal.value = new window.HSOverlay(modalRef.value, {
     isClosePrev: true,
   });
+  modal.value.autoClose = 1;
   modal.value.on("close", () => {
     console.log("on close", open.value);
     open.value = false;
