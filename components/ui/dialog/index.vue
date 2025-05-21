@@ -13,7 +13,7 @@
 
   <div
     :id
-    class="overlay modal overlay-open:opacity-100 hidden modal-middle overflow-scroll p-0 sm:p-4"
+    class="overlay modal overlay-open:opacity-100 hidden overlay-open:duration-300"
     role="dialog"
     ref="modalRef"
     tabindex="-1"
