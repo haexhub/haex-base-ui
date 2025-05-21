@@ -6,7 +6,7 @@
     aria-haspopup="menu"
     aria-expanded="false"
     :aria-label="label"
-    @click="$emit('click')"
+    @click.prevent="$emit('click')"
   >
     <slot name="trigger">open</slot>
   </button>
@@ -58,7 +58,7 @@ defineOptions({
 
 defineProps<{ title?: string; label?: string }>();
 
-defineEmits(["click"]);
+defineEmits(["click", "close"]);
 
 const id = useId();
 
