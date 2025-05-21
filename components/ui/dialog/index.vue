@@ -7,6 +7,7 @@
     aria-expanded="false"
     :aria-label="label"
     @click="$emit('click')"
+    class="--prevent-on-load-init"
   >
     <slot name="trigger">open</slot>
   </button>
@@ -88,11 +89,11 @@ onMounted(async () => {
   if (!modalRef.value) return;
   // flyonui has a problem importing HSOverlay at component level due to ssr
   // that's the workaround I found
-  /* const flyonui = await import("flyonui/flyonui");
-  modal.value = new flyonui.HSOverlay(modalRef.value);
+  //const flyonui = await import("flyonui/flyonui");
+  modal.value = new HSOverlay(modalRef.value);
   modal.value.on("close", () => {
     open.value = false;
-  }); */
+  });
 });
 </script>
 

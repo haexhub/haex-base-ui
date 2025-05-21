@@ -1,7 +1,8 @@
 <template>
   <div class="flex flex-col">
     <div class="text-5xl text-center">Haex Base Ui</div>
-    <!-- <UiDialogTest />
+    <UiDialogTest />
+    <!-- 
     <UiDialog class="btn btn-primary">
       <template #trigger>
         <Icon name="mdi:plus" />

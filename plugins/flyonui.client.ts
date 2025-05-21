@@ -1,3 +1,4 @@
+import "flyonui/dist/overlay";
 import 'flyonui/flyonui';
 
 import { type IStaticMethods } from 'flyonui/flyonui';
