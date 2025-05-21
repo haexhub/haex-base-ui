@@ -31,7 +31,7 @@
             type="button"
             class="btn btn-text btn-circle btn-sm absolute end-3 top-3"
             aria-label="Close"
-            data-overlay="#basic-modal"
+            :data-overlay="`#${id}`"
           >
             <span class="icon-[tabler--x] size-4"></span>
           </button>
@@ -48,7 +48,7 @@
           <button
             type="button"
             class="btn btn-soft btn-secondary"
-            data-overlay="#basic-modal"
+            :data-overlay="`#${id}`"
           >
             Close
           </button>
