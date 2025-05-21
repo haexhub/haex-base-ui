@@ -1,12 +1,15 @@
 <template>
-  <component
-    :is="activatorIs"
+  <button
     :data-overlay="`#${id}`"
     v-bind="$attrs"
-    :modalRef
+    type="button"
+    class="dropdown-toggle"
+    aria-haspopup="menu"
+    aria-expanded="false"
+    :aria-label="label"
   >
-    <slot name="trigger" :modalRef :id>open</slot>
-  </component>
+    <slot name="trigger">open</slot>
+  </button>
 
   <div
     :id
@@ -48,30 +51,19 @@
 
 <script setup lang="ts">
 import type { HSOverlay } from "flyonui/flyonui";
-//import { HSOverlay } from "flyonui/flyonui";
 
 defineOptions({
   inheritAttrs: false,
 });
 
-defineProps({
-  title: {
-    type: String,
-    default: "",
-  },
-  activatorIs: {
-    type: String,
-    default: "button",
-  },
-});
+defineProps<{ title?: string; label?: string }>();
 
 const id = useId();
 
 const open = defineModel<boolean>("open", { default: false });
 
 const { t } = useI18n();
-/*
- */
+
 const modalRef = useTemplateRef("modalRef");
 
 defineExpose({ modalRef });
