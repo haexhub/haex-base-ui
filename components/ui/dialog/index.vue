@@ -47,7 +47,7 @@
 </template>
 
 <script setup lang="ts">
-import { type HSOverlay } from "flyonui/flyonui";
+//import { type HSOverlay } from "flyonui/flyonui";
 //import { HSOverlay } from "flyonui/flyonui";
 
 defineOptions({
@@ -76,7 +76,7 @@ const modalRef = useTemplateRef("modalRef");
 
 defineExpose({ modalRef });
 
-const modal = ref<HSOverlay>();
+//const modal = ref<HSOverlay>();
 
 /* watch(open, async () => {
   //console.log("open modal", open.value);
