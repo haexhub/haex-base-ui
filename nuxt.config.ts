@@ -58,11 +58,18 @@ export default defineNuxtConfig({
     },
   },
 
-  css: [join(currentDir, "./assets/css/main.css")],
+  css: [join(currentDir, "./assets/css/main.css"), 'flyonui/flyonui.css', 'flyonui/variants.css',],
 
   vite: {
     plugins: [
       tailwindcss(),
     ],
+    optimizeDeps: {
+      include: ['flyonui/flyonui'],
+    },
+  },
+
+  build: {
+    transpile: ['flyonui'],
   },
 })
