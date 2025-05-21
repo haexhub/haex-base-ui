@@ -7,6 +7,7 @@
     aria-haspopup="menu"
     aria-expanded="false"
     :aria-label="label"
+    @click="$emit('click')"
   >
     <slot name="trigger">open</slot>
   </button>
@@ -57,6 +58,8 @@ defineOptions({
 });
 
 defineProps<{ title?: string; label?: string }>();
+
+defineEmits(["click"]);
 
 const id = useId();
 
