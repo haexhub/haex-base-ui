@@ -1,13 +1,13 @@
 <template>
   <button
-    :data-overlay="`#${id}`"
     v-bind="$attrs"
     type="button"
     aria-haspopup="dialog"
     aria-expanded="false"
     :aria-label="label"
-    @click="open = true"
     class="--prevent-on-load-init"
+    @click="open = true"
+    :data-overlay="`#${id}`"
   >
     <slot name="trigger">open</slot>
   </button>
@@ -75,11 +75,11 @@ defineExpose({ modalRef });
 const modal = ref<HSOverlay>();
 
 watch(open, async () => {
-  //console.log("open modal", open.value);
+  console.log("watch open modal", open.value, modal.value);
   if (open.value) {
-    modal.value?.open();
+    await modal.value?.open();
   } else {
-    modal.value?.close(true);
+    await modal.value?.close(true);
     //HSOverlay.close(`#${id}`);
     //console.log("close dialog");
   }
@@ -90,10 +90,18 @@ onMounted(async () => {
   // flyonui has a problem importing HSOverlay at component level due to ssr
   // that's the workaround I found
   const flyonui = await import("flyonui/flyonui");
-  modal.value = new flyonui.HSOverlay(modalRef.value);
+
+  modal.value = new flyonui.HSOverlay(modalRef.value, {
+    isClosePrev: true,
+  });
   modal.value.on("close", () => {
+    console.log("on close", open.value);
     open.value = false;
   });
+  /* modal.value.on("open", () => {
+    console.log("on open", open.value);
+    open.value = true;
+  }); */
 });
 </script>
 

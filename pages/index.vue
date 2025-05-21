@@ -39,16 +39,22 @@
         <!-- </button> -->
       </template>
 
+      <UiInput v-model="input" />
+
+      <UiInput v-model="input" />
+
       <template #buttons>
         <UiButton class="btn-error" @click="open = false"> abort </UiButton>
 
         <UiButton type="submit" class="btn-primary"> open </UiButton>
       </template>
     </UiDialog>
+
+    <UiInput v-model="input" />
   </div>
 </template>
 
 <script setup lang="ts">
 const open = ref(false);
-const dialog = useTemplateRef("dialog");
+const input = ref();
 </script>
