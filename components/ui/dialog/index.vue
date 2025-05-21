@@ -1,11 +1,16 @@
 <template>
-  <component :is="activatorIs" :data-overlay="`#${id}`" v-bind="$attrs">
-    <slot name="trigger">open</slot>
+  <component
+    :is="activatorIs"
+    :data-overlay="`#${id}`"
+    v-bind="$attrs"
+    :modalRef
+  >
+    <slot name="trigger" :modalRef :id>open</slot>
   </component>
 
   <div
     :id
-    class="overlay modal overlay-open:opacity-100 hidden modal-middle overflow-scroll p-0 sm:p-4 --prevent-on-load-init"
+    class="overlay modal overlay-open:opacity-100 hidden modal-middle overflow-scroll p-0 sm:p-4"
     role="dialog"
     ref="modalRef"
   >
@@ -24,7 +29,7 @@
             type="button"
             class="btn btn-text btn-circle btn-sm absolute end-3 top-3"
             :aria-label="t('close')"
-            @click="open = false"
+            :data-overlay="`#${id}`"
             tabindex="1"
           >
             <Icon name="mdi:close" size="18" />
@@ -42,7 +47,8 @@
 </template>
 
 <script setup lang="ts">
-import type { HSOverlay } from "flyonui/flyonui";
+import { type HSOverlay } from "flyonui/flyonui";
+//import { HSOverlay } from "flyonui/flyonui";
 
 defineOptions({
   inheritAttrs: false,
@@ -61,15 +67,18 @@ defineProps({
 
 const id = useId();
 
-const open = defineModel<boolean>("open", { default: false });
+//const open = defineModel<boolean>("open", { default: false });
 
 const { t } = useI18n();
 /*
  */
 const modalRef = useTemplateRef("modalRef");
+
+defineExpose({ modalRef });
+
 const modal = ref<HSOverlay>();
 
-watch(open, async () => {
+/* watch(open, async () => {
   //console.log("open modal", open.value);
   if (open.value) {
     modal.value?.open();
@@ -78,9 +87,9 @@ watch(open, async () => {
     //HSOverlay.close(`#${id}`);
     //console.log("close dialog");
   }
-});
+}); */
 
-onMounted(async () => {
+/* onMounted(async () => {
   if (!modalRef.value || !import.meta.client) return;
   // flyonui has a problem importing HSOverlay at component level due to ssr
   // that's the workaround I found
@@ -89,7 +98,7 @@ onMounted(async () => {
   modal.value.on("close", () => {
     open.value = false;
   });
-});
+}); */
 </script>
 
 <i18n lang="json">
