@@ -18,12 +18,13 @@
       <template #activator> <Icon name="mdi:menu" /> </template>
     </UiDropdown>
 
-    <UiDialog ref="dialog" v-model:open="open"> lalalalla </UiDialog>
+    <!-- <UiDialog ref="dialog" v-model:open="open"> lalalalla </UiDialog> -->
 
-    <UiButton @click="open = !open">Open</UiButton>
+    <UiButton @click="open = !open">Open Button</UiButton>
 
     <UiDialog
       class="btn btn-primary btn-outline shadow-md md:btn-lg shrink-0 flex-1"
+      v-model:open="open"
     >
       <!-- @close="initDatabase" -->
       <template #trigger>
@@ -38,7 +39,7 @@
       </template>
 
       <template #buttons>
-        <UiButton class="btn-error"> abort </UiButton>
+        <UiButton class="btn-error" @click="open = false"> abort </UiButton>
 
         <UiButton type="submit" class="btn-primary"> open </UiButton>
       </template>
