@@ -3,7 +3,6 @@
     :data-overlay="`#${id}`"
     v-bind="$attrs"
     type="button"
-    class="dropdown-toggle"
     aria-haspopup="menu"
     aria-expanded="false"
     :aria-label="label"

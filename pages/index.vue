@@ -21,32 +21,28 @@
     <UiDialog ref="dialog" v-model:open="open"> lalalalla </UiDialog>
 
     <UiButton @click="open = !open">Open</UiButton>
-    <div class="dropdown relative inline-flex">
-      <button
-        id="dropdown-default"
-        type="button"
-        class="dropdown-toggle btn btn-primary"
-        aria-haspopup="menu"
-        aria-expanded="false"
-        aria-label="Dropdown"
-      >
-        Dropdown
-        <span
-          class="icon-[tabler--chevron-down] dropdown-open:rotate-180 size-4"
-        ></span>
-      </button>
-      <ul
-        class="dropdown-menu dropdown-open:opacity-100 hidden min-w-60"
-        role="menu"
-        aria-orientation="vertical"
-        aria-labelledby="dropdown-default"
-      >
-        <li><a class="dropdown-item" href="#">My Profile</a></li>
-        <li><a class="dropdown-item" href="#">Settings</a></li>
-        <li><a class="dropdown-item" href="#">Billing</a></li>
-        <li><a class="dropdown-item" href="#">FAQs</a></li>
-      </ul>
-    </div>
+
+    <UiDialog
+      class="btn btn-primary btn-outline shadow-md md:btn-lg shrink-0 flex-1"
+    >
+      <!-- @close="initDatabase" -->
+      <template #trigger>
+        <!-- <button
+        class="btn btn-primary btn-outline shadow-md md:btn-lg shrink-0 flex-1"
+        @click="onLoadDatabase"
+      > -->
+
+        <Icon name="mdi:folder-open-outline" />
+        open
+        <!-- </button> -->
+      </template>
+
+      <template #buttons>
+        <UiButton class="btn-error"> abort </UiButton>
+
+        <UiButton type="submit" class="btn-primary"> open </UiButton>
+      </template>
+    </UiDialog>
   </div>
 </template>
 
