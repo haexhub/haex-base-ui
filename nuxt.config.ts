@@ -26,6 +26,7 @@ export default defineNuxtConfig({
       join(currentDir, "./pages/**"),
       join(currentDir, "./types/**")
     ],
+
   },
 
   i18n: {

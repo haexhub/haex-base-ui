@@ -1,12 +1,13 @@
 <template>
-  <component is="button" :data-overlay="`#${id}`" v-bind="$attrs">
+  <component :is="activatorIs" :data-overlay="`#${id}`" v-bind="$attrs">
     <slot name="trigger">open</slot>
   </component>
 
   <div
     :id
-    class="overlay modal overlay-open:opacity-100 hidden modal-middle [--tab-accessibility-limited:false] overflow-scroll p-0 sm:p-4"
+    class="overlay modal overlay-open:opacity-100 hidden modal-middle overflow-scroll p-0 sm:p-4 --prevent-on-load-init"
     role="dialog"
+    ref="modalRef"
   >
     <div
       class="overlay-animation-target overlay-open:mt-4 overlay-open:duration-500 mt-12 transition-all ease-out modal-dialog overlay-open:opacity-100"
@@ -41,7 +42,7 @@
 </template>
 
 <script setup lang="ts">
-import { HSOverlay } from "flyonui/flyonui";
+import type { HSOverlay } from "flyonui/flyonui";
 
 defineOptions({
   inheritAttrs: false,
@@ -52,7 +53,7 @@ defineProps({
     type: String,
     default: "",
   },
-  triggerIs: {
+  activatorIs: {
     type: String,
     default: "button",
   },
@@ -63,30 +64,32 @@ const id = useId();
 const open = defineModel<boolean>("open", { default: false });
 
 const { t } = useI18n();
-/* const modalRef = useTemplateRef("modalRef");
-const modal = ref<HSOverlay>(); */
+/*
+ */
+const modalRef = useTemplateRef("modalRef");
+const modal = ref<HSOverlay>();
 
 watch(open, async () => {
   //console.log("open modal", open.value);
   if (open.value) {
-    HSOverlay.open(`#${id}`);
-    //await modal.value?.open();
+    modal.value?.open();
   } else {
-    //await modal.value?.close(true);
-    HSOverlay.close(`#${id}`);
+    modal.value?.close(true);
+    //HSOverlay.close(`#${id}`);
     //console.log("close dialog");
   }
 });
 
-/* onMounted(() => {
-  if (!modalRef.value) return;
-  modal.value = new HSOverlay(modalRef.value, { isClosePrev: true });
-
+onMounted(async () => {
+  if (!modalRef.value || !import.meta.client) return;
+  // flyonui has a problem importing HSOverlay at component level due to ssr
+  // that's the workaround I found
+  const flyonui = await import("flyonui/flyonui");
+  modal.value = new flyonui.HSOverlay(modalRef.value);
   modal.value.on("close", () => {
-    console.log("close it from event", open.value);
     open.value = false;
   });
-}); */
+});
 </script>
 
 <i18n lang="json">

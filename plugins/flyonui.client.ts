@@ -7,9 +7,9 @@ declare global {
   }
 }
 
-export default defineNuxtPlugin(() => {
+export default defineNuxtPlugin((nuxtApp) => {
   const router = useRouter();
   router.afterEach(async () => {
-    setTimeout(() => window.HSStaticMethods.autoInit());
+    nextTick(() => window.HSStaticMethods.autoInit());
   });
 });

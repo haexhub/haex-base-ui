@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <div class="flex flex-col">
+    <div class="text-5xl text-center">Haex Base Ui</div>
     <UiDialogTest />
     <UiDialog class="btn btn-primary">
       <template #trigger>
@@ -17,6 +18,10 @@
       <template #activator> <Icon name="mdi:menu" /> </template>
     </UiDropdown>
 
+    aa
+    <UiDialog v-model:open="open"> lalalalla </UiDialog>
+
+    <UiButton @click="open = !open">Open</UiButton>
     <div class="dropdown relative inline-flex">
       <button
         id="dropdown-default"
