@@ -18,11 +18,9 @@
       <template #activator> <Icon name="mdi:menu" /> </template>
     </UiDropdown>
 
-    aa
+    <UiDialog ref="dialog" v-model:open="open"> lalalalla </UiDialog>
 
-    <UiDialog ref="dialog"> lalalalla </UiDialog>
-
-    <UiButton @click="">Open</UiButton>
+    <UiButton @click="open = !open">Open</UiButton>
     <div class="dropdown relative inline-flex">
       <button
         id="dropdown-default"
