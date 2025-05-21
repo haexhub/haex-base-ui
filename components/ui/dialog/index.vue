@@ -6,7 +6,7 @@
     aria-haspopup="dialog"
     aria-expanded="false"
     :aria-label="label"
-    @click="$emit('click')"
+    @click="open = true"
     class="--prevent-on-load-init"
   >
     <slot name="trigger">open</slot>
@@ -34,8 +34,8 @@
             type="button"
             class="btn btn-text btn-circle btn-sm absolute end-3 top-3"
             :aria-label="t('close')"
-            :data-overlay="`#${id}`"
             tabindex="1"
+            @click="open = false"
           >
             <Icon name="mdi:close" size="18" />
           </button>
@@ -89,8 +89,8 @@ onMounted(async () => {
   if (!modalRef.value) return;
   // flyonui has a problem importing HSOverlay at component level due to ssr
   // that's the workaround I found
-  //const flyonui = await import("flyonui/flyonui");
-  modal.value = new HSOverlay(modalRef.value);
+  const flyonui = await import("flyonui/flyonui");
+  modal.value = new flyonui.HSOverlay(modalRef.value);
   modal.value.on("close", () => {
     open.value = false;
   });

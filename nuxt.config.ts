@@ -58,7 +58,7 @@ export default defineNuxtConfig({
     },
   },
 
-  css: [join(currentDir, "./assets/css/main.css"), 'flyonui/flyonui.css', 'flyonui/variants.css',],
+  css: [join(currentDir, "./assets/css/main.css")],
 
   vite: {
     plugins: [
