@@ -20,11 +20,11 @@
 </template>
 
 <script setup lang="ts">
-import type { ZodSchema } from 'zod'
+import type { ZodSchema } from "zod";
 
-const { t } = useI18n()
+const { t } = useI18n();
 
-const value = defineModel<string | number | null | undefined>()
+const value = defineModel<string | number | null | undefined>();
 
 defineProps({
   label: String,
@@ -32,13 +32,15 @@ defineProps({
   checkInput: Boolean,
   rules: Object as PropType<ZodSchema>,
   autofocus: Boolean,
-})
+});
 
-const type = ref<'password' | 'text'>('password')
+const type = ref<"password" | "text">("password");
 
 const tooglePasswordType = () => {
-  type.value = type.value === 'password' ? 'text' : 'password'
-}
+  type.value = type.value === "password" ? "text" : "password";
+};
+
+onMounted(() => window.HSStaticMethods.autoInit());
 </script>
 
 <i18n lang="json">

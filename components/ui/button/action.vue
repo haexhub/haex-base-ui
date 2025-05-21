@@ -10,10 +10,7 @@
         aria-expanded="false"
         aria-label="Menu"
       >
-        <Icon
-          :name="icon"
-          size="46"
-        />
+        <Icon :name="icon" size="46" />
       </button>
 
       <div
@@ -26,20 +23,13 @@
           class="dropdown-open:ease-in dropdown-open:translate-x-0 -translate-x-1 rtl:translate-x-1 transition duration-300 ease-out"
           data-dropdown-transition
         >
-          <li
-            v-for="link in menu"
-            class="dropdown-item hover:bg-transparent"
-          >
+          <li v-for="link in menu" class="dropdown-item hover:bg-transparent">
             <NuxtLinkLocale
               v-if="link.to"
               :to="link.to"
               class="btn btn-primary flex items-center no-underline rounded-lg flex-nowrap"
             >
-              <Icon
-                v-if="link.icon"
-                :name="link.icon"
-                class="me-3"
-              />
+              <Icon v-if="link.icon" :name="link.icon" class="me-3" />
               {{ link.label }}
             </NuxtLinkLocale>
 
@@ -48,11 +38,7 @@
               @click="link.action"
               class="link hover:link-primary flex items-center no-underline w-full"
             >
-              <Icon
-                v-if="link.icon"
-                :name="link.icon"
-                class="me-3"
-              />
+              <Icon v-if="link.icon" :name="link.icon" class="me-3" />
               {{ link.label }}
             </button>
           </li>
@@ -63,7 +49,7 @@
 </template>
 
 <script setup lang="ts">
-import type { IActionMenuItem } from './types';
+import type { IActionMenuItem } from "./types";
 
 defineProps({
   menu: {
@@ -71,9 +57,11 @@ defineProps({
   },
   icon: {
     type: String,
-    default: 'mdi:plus',
+    default: "mdi:plus",
   },
 });
 
 const id = useId();
+
+onMounted(() => window.HSStaticMethods.autoInit());
 </script>

@@ -45,57 +45,57 @@
 </template>
 
 <script setup lang="ts">
-import { type ZodSchema } from 'zod'
+import { type ZodSchema } from "zod";
 
-const inputRef = useTemplateRef('inputRef')
-defineExpose({ inputRef })
+const inputRef = useTemplateRef("inputRef");
+defineExpose({ inputRef });
 
 defineOptions({
   inheritAttrs: false,
-})
+});
 
 const props = defineProps({
   placeholder: {
     type: String,
-    default: '',
+    default: "",
   },
   type: {
     type: String as PropType<
-      | 'button'
-      | 'checkbox'
-      | 'color'
-      | 'date'
-      | 'datetime-local'
-      | 'email'
-      | 'file'
-      | 'hidden'
-      | 'image'
-      | 'month'
-      | 'number'
-      | 'password'
-      | 'radio'
-      | 'range'
-      | 'reset'
-      | 'search'
-      | 'submit'
-      | 'tel'
-      | 'text'
-      | 'time'
-      | 'url'
-      | 'week'
+      | "button"
+      | "checkbox"
+      | "color"
+      | "date"
+      | "datetime-local"
+      | "email"
+      | "file"
+      | "hidden"
+      | "image"
+      | "month"
+      | "number"
+      | "password"
+      | "radio"
+      | "range"
+      | "reset"
+      | "search"
+      | "submit"
+      | "tel"
+      | "text"
+      | "time"
+      | "url"
+      | "week"
     >,
-    default: 'text',
+    default: "text",
   },
   label: String,
   name: String,
   prependIcon: {
     type: String,
-    default: '',
+    default: "",
   },
   prependLabel: String,
   appendIcon: {
     type: String,
-    default: '',
+    default: "",
   },
   appendLabel: String,
   rules: Object as PropType<ZodSchema>,
@@ -103,45 +103,45 @@ const props = defineProps({
   withCopyButton: Boolean,
   autofocus: Boolean,
   read_only: Boolean,
-})
+});
 
 const input = defineModel<string | number | undefined | null>({
-  default: '',
+  default: "",
   required: true,
-})
+});
 
-const { currentScreenSize } = storeToRefs(useUiStore())
 onMounted(() => {
-  if (props.autofocus && inputRef.value) inputRef.value.focus()
-})
+  window.HSStaticMethods.autoInit();
+  if (props.autofocus && inputRef.value) inputRef.value.focus();
+});
 
-const errors = defineModel<string[] | undefined>('errors')
+const errors = defineModel<string[] | undefined>("errors");
 
-const id = useId()
+const id = useId();
 
-watch(input, () => checkInput())
+watch(input, () => checkInput());
 
 watch(
   () => props.checkInput,
   () => {
-    checkInput()
+    checkInput();
   }
-)
+);
 
-const emit = defineEmits(['error'])
+const emit = defineEmits(["error"]);
 
 const checkInput = () => {
   if (props.rules) {
-    const result = props.rules.safeParse(input.value)
+    const result = props.rules.safeParse(input.value);
     //console.log('check result', result.error, props.rules);
     if (!result.success) {
-      errors.value = result.error.errors.map((error) => error.message)
-      emit('error', errors.value)
+      errors.value = result.error.errors.map((error) => error.message);
+      emit("error", errors.value);
     } else {
-      errors.value = []
+      errors.value = [];
     }
   }
-}
+};
 
-const { copy, copied } = useClipboard()
+const { copy, copied } = useClipboard();
 </script>

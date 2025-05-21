@@ -12,7 +12,6 @@
     <template #append>
       <UiButton
         v-if="read_only"
-        @click="openUrl(`${value}`)"
         class="btn-outline btn-accent h-auto"
         :class="{
           disabled: !value?.length,
@@ -25,8 +24,8 @@
 </template>
 
 <script setup lang="ts">
-import type { ZodSchema } from 'zod';
-import { openUrl } from '@tauri-apps/plugin-opener';
+import type { ZodSchema } from "zod";
+//import { openUrl } from '@tauri-apps/plugin-opener';
 
 const { t } = useI18n();
 const { currentScreenSize } = storeToRefs(useUiStore());
