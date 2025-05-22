@@ -1,10 +1,10 @@
 <template>
   <div>
-    <NuxtLayout :data-theme="currentTheme.value">
+    <NuxtLayout>
       <NuxtPage />
-      <NuxtSnackbar />
     </NuxtLayout>
   </div>
+  <!-- :data-theme="currentTheme.value" -->
 </template>
 
 <script setup lang="ts">
