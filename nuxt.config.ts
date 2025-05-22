@@ -84,8 +84,5 @@ export default defineNuxtConfig({
 
   vite: {
     plugins: [tailwindcss()],
-    optimizeDeps: {
-      include: ["nuxt-zod-i18n"],
-    },
   },
 });
