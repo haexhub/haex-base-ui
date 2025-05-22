@@ -35,6 +35,7 @@ export default defineNuxtConfig({
     componentName: "ColorScheme",
     classPrefix: "",
     classSuffix: "",
+
     //storage: "localStorage", // or 'sessionStorage' or 'cookie'
     storageKey: "nuxt-color-mode",
   },
@@ -79,7 +80,7 @@ export default defineNuxtConfig({
      * Directory that the component lives in.
      * @default "./components/ui"
      */
-    componentDir: "./components/ui",
+    componentDir: join(currentDir, "./components/ui"),
   },
 
   vite: {
